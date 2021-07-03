@@ -1,0 +1,29 @@
+header {
+  padding: 0 1rem;
+  background-color: var(--medium-primary);
+  color: var(--background);
+  display: flex;
+  text-align: right;
+
+  .header-content {
+    a {
+      margin-right: 1rem;
+      border: 2px solid var(--background);
+      border-radius: 1rem;
+      padding: 1rem;
+      color: var(--background);
+      font-weight: 800;
+    }
+    h2 {
+      margin-right: auto;
+      @media (max-width: 500px) {
+        display: none;
+      }
+    }
+    align-items: center;
+    width: 100%;
+    display: flex;
+    margin-left: auto;
+    padding: 1.5rem;
+  }
+}

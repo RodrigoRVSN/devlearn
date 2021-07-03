@@ -12,13 +12,17 @@ export function Login(): JSX.Element {
 
   const onSubmit = (submitted: any) => {
     function getItems() {
-      api.post(`/users`, {
-        email: submitted.email,
-        password: submitted.password,
-      });
+      api
+        .post(`/login`, {
+          email: submitted.email,
+          password: submitted.password,
+        })
+        .then((res) => {
+          localStorage.setItem("token", res.data);
+        });
     }
     getItems();
-    history.push("/login");
+    history.push("/");
   };
 
   return (
@@ -49,7 +53,7 @@ export function Login(): JSX.Element {
           </form>
 
           <h3>
-            Não tem conta? <a href="/login">Cadastre-se</a>
+            Não tem conta? <a href="/register">Cadastre-se</a>
           </h3>
         </Paper>
       </div>
