@@ -1,0 +1,49 @@
+#register-page {
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--background);
+
+  .box-container {
+    border-radius: 1rem;
+    background-color: var(--medium-primary);
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    padding: 2rem;
+    gap: 2rem;
+
+    form {
+      gap: 2rem;
+      display: flex;
+      flex-direction: column;
+      input {
+        &:focus {
+          background-color: var(--light-primary);
+        }
+      }
+      label {
+        color: var(--background);
+      }
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    h3 {
+      text-align: right;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 930px) {
+      width: 60vw;
+    }
+    @media (max-width: 560px) {
+      width: 90vw;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.button {
+  height: 3rem;
+  border-radius: 0.5rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  background-color: var(--light-primary);
+  color: var(--background);
+  margin: 0 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 0;
+  transition: filter 0.2s;
+
+  &:not(:disabled):hover {
+    filter: brightness(0.9);
+  }
+
+  &:disabled {
+    color: var(--light-primary);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

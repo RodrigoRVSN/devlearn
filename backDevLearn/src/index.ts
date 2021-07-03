@@ -1,11 +1,12 @@
 import express, { NextFunction, Request, Response } from "express";
-
 import "reflect-metadata";
-
 import "./database/connect";
 import router from "./routes";
 
 const app = express();
+
+const cors = require("cors");
+app.use(cors())
 
 app.use(express.json());
 app.use(router);
