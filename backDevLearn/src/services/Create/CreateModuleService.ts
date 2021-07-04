@@ -6,7 +6,7 @@ class CreateModuleService {
     const modulesRepositories = getCustomRepository(ModulesRepositories);
 
     if (!module) {
-      throw new Error("incorrect");
+      throw new Error("Informar texto");
     }
 
     const moduleAlreadyExists = await modulesRepositories.findOne({ module });

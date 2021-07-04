@@ -21,7 +21,7 @@ export function Login(): JSX.Element {
         })
         .then((res) => {
           localStorage.setItem("token", res.data);
-          history.push("/");
+          history.push("/admin");
         })
         .catch((err) => {
           setError("Login está incorreto!");

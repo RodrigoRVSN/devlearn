@@ -1,12 +1,15 @@
 import { Grid } from "@material-ui/core";
 
 import "./styles.scss";
-import Header from "../../components/Header";
-import { useEffect } from "react";
 import { api } from "../../services/api";
-import { useState } from "react";
+import { AddModule } from "../../components/AddModule";
+import { AddClasses } from "../../components/AddClasses";
+import DeleteModule from "../../components/DeleteModule";
+
+import { useEffect, useState } from "react";
 import { IModules } from "../../@types/IModules";
 import { IClasses } from "../../@types/IClasses";
+import EditModule from "../../components/EditModule";
 
 export function Admin(): JSX.Element {
   const [modules, setModules] = useState<IModules[]>();
@@ -48,6 +51,7 @@ export function Admin(): JSX.Element {
   /* Pega as aulas do módulo clicado */
 
   function classesInModule(module_id: string[]) {
+    navigator.clipboard.writeText(module_id.toString());
     async function getClasses() {
       await api.get(`/${module_id}/classes`).then((res) => {
         setClasses(res.data);
@@ -69,15 +73,17 @@ export function Admin(): JSX.Element {
 
   return (
     <>
-      <Header />
       <div id="home-page">
         {loading && (
           <>
-            <h2>MÓDULOS</h2>
+            <h2>PÁGINA DE ADMINISTRAÇÃO</h2>
             <h4>
-              Selecione os módulos! Ao abrir um módulo, as aulas estarão no fim
-              da página.
+              Obs: Ao clicar em um módulo, o ID dele será copiado
+              automaticamente para a sua área de transferência. Ao Adicionar uma
+              aula, basta colar esse módulo que você copiou ao clicar.
             </h4>
+            <AddModule />
+            <AddClasses />
             <Grid
               spacing={4}
               container
@@ -102,6 +108,10 @@ export function Admin(): JSX.Element {
                           ? "1 aula"
                           : `${item.amount} aulas`}
                       </h3>
+                      <div className="button-container">
+                        <DeleteModule module_id={item.id} />
+                        <EditModule module_id={item.id} />
+                      </div>
                     </div>
                   </Grid>
                 );
@@ -109,7 +119,7 @@ export function Admin(): JSX.Element {
             </Grid>
           </>
         )}
-        <span id="spacer"></span>
+        <span id="spacer">AULAS</span>
         {classes && (
           <>
             <Grid

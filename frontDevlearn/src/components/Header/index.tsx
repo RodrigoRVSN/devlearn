@@ -7,7 +7,7 @@ const Header: React.FC = () => {
       <header>
         <div className="header-content">
           <h2>DEV LEARN</h2>
-          <a href="/regiter">CADASTRAR</a>
+          <a href="/register">CADASTRAR</a>
           <a href="/login">ENTRAR</a>
         </div>
       </header>

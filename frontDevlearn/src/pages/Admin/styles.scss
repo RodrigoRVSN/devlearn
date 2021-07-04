@@ -3,6 +3,12 @@
   flex-direction: column;
   padding: 2rem 5rem;
   gap: 2rem;
+  align-items: center;
+  text-align: center;
+
+  button {
+    width: 10rem;
+  }
 
   @media (max-width: 550px) {
     padding: 2rem 0.5rem;
@@ -43,6 +49,11 @@
     background-color: var(--medium-primary);
     color: var(--background);
     border: 5px solid var(--dark-secondary);
+
+    .button-container {
+      display: flex;
+    }
+
     &:hover {
       border: 5px solid var(--dark-primary);
       background-color: var(--background);
