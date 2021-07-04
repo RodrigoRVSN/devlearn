@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 export function Login(): JSX.Element {
   const { handleSubmit, register } = useForm();
   const history = useHistory();
+  const [error, setError] = useState("");
 
   const onSubmit = (submitted: any) => {
     function getItems() {
@@ -19,10 +21,13 @@ export function Login(): JSX.Element {
         })
         .then((res) => {
           localStorage.setItem("token", res.data);
+          history.push("/");
+        })
+        .catch((err) => {
+          setError("Login está incorreto!");
         });
     }
     getItems();
-    history.push("/");
   };
 
   return (
@@ -49,6 +54,7 @@ export function Login(): JSX.Element {
               variant="outlined"
               placeholder="*******"
             />
+            <p>{error}</p>
             <Button type="submit">ENTRAR</Button>
           </form>
 

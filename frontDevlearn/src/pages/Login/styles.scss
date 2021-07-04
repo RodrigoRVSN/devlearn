@@ -12,7 +12,9 @@
     background-color: var(--medium-primary);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 35vw;
+    height: 80vh;
     padding: 2rem;
     gap: 2rem;
 
@@ -27,6 +29,10 @@
       }
       label {
         color: var(--background);
+      }
+
+      p {
+        color: var(--light-secondary);
       }
     }
 

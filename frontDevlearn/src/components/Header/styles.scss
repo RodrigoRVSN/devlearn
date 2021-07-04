@@ -6,6 +6,7 @@ header {
   text-align: right;
 
   .header-content {
+    
     a {
       margin-right: 1rem;
       border: 2px solid var(--background);
@@ -13,7 +14,13 @@ header {
       padding: 1rem;
       color: var(--background);
       font-weight: 800;
+      &:hover {
+        border: 2px solid var(--dark-secondary);
+        background: var(--background);
+        color: var(--light-secondary);
+      }
     }
+
     h2 {
       margin-right: auto;
       @media (max-width: 500px) {

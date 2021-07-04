@@ -8,7 +8,7 @@ import { useState } from "react";
 import { IModules } from "../../@types/IModules";
 import { IClasses } from "../../@types/IClasses";
 
-export function Home(): JSX.Element {
+export function Admin(): JSX.Element {
   const [modules, setModules] = useState<IModules[]>();
   const [classes, setClasses] = useState<IClasses[]>();
   const [loading, setLoading] = useState(false);
@@ -109,7 +109,7 @@ export function Home(): JSX.Element {
             </Grid>
           </>
         )}
-        <span id="spacer">AULAS</span>
+        <span id="spacer"></span>
         {classes && (
           <>
             <Grid
