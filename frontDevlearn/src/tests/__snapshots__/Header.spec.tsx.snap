@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> should render the header 1`] = `
+<div>
+  <header>
+    <div
+      class="header-content"
+    >
+      <h2>
+        DEV LEARN
+      </h2>
+      <a
+        href="/register"
+      >
+        CADASTRAR
+      </a>
+      <a
+        href="/login"
+      >
+        ENTRAR
+      </a>
+    </div>
+  </header>
+</div>
+`;

@@ -43,7 +43,6 @@ export function useModules(): useModulesProps {
         if (!modules) {
           setLoading(!loading);
         }
-
         if (loading) {
           setModules(
             modules?.sort(function (a, b) {

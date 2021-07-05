@@ -18,15 +18,15 @@ import { useHistory } from "react-router-dom";
 
 export function Admin(): JSX.Element {
   const [classes, setClasses] = useState<IClasses[]>();
-  const { modules, loading } = useModules();
+  const { modules, loading, isChanged } = useModules();
   const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      history.push("/");
+      history?.push("/");
     }
-  }, [history, modules, loading]);
+  }, [history, modules, loading, isChanged]);
 
   /* Pega as aulas do módulo clicado */
 

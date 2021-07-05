@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Admin /> should render the admin page 1`] = `
+<div>
+  <div
+    id="home-page"
+  >
+    <button
+      class="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+        />
+      </svg>
+    </button>
+    <h2>
+      PÁGINA DE ADMINISTRAÇÃO
+    </h2>
+    <h4>
+      Obs: Basta clicar no botão "COPIAR ID" para o ID do respectivo módulo ir automaticamente para a sua área de transferência.
+    </h4>
+    <button
+      class="button"
+    >
+      Adicionar módulo
+    </button>
+    <button
+      class="button"
+    >
+      Adicionar aula
+    </button>
+    <div
+      class="loading-page"
+    >
+      <div
+        class="loading"
+      >
+        <p>
+          DEV LEARN
+        </p>
+        <div
+          class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+          role="progressbar"
+          style="width: 40px; height: 40px;"
+        >
+          <svg
+            class="MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="20.2"
+              stroke-width="3.6"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <span
+      id="spacer"
+    >
+      AULAS
+    </span>
+  </div>
+</div>
+`;

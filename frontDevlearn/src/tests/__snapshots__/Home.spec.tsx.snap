@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> should render the home page 1`] = `
+<div>
+  <header>
+    <div
+      class="header-content"
+    >
+      <h2>
+        DEV LEARN
+      </h2>
+      <a
+        href="/register"
+      >
+        CADASTRAR
+      </a>
+      <a
+        href="/login"
+      >
+        ENTRAR
+      </a>
+    </div>
+  </header>
+  <div
+    id="home-page"
+  >
+    <div
+      class="loading-page"
+    >
+      <div
+        class="loading"
+      >
+        <p>
+          DEV LEARN
+        </p>
+        <div
+          class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+          role="progressbar"
+          style="width: 40px; height: 40px;"
+        >
+          <svg
+            class="MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="20.2"
+              stroke-width="3.6"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <span
+      id="spacer"
+    >
+      AULAS
+    </span>
+  </div>
+</div>
+`;
