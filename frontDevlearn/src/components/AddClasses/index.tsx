@@ -12,8 +12,8 @@ export function AddClasses(): JSX.Element {
 
   const onSubmit = (submitted: any) => {
     const token = localStorage.getItem("token");
-    function postClasses() {
-      api
+    async function postClasses() {
+      await api
         .post(
           `/classes`,
           {

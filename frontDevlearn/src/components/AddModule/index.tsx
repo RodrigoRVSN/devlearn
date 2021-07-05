@@ -12,8 +12,8 @@ export function AddModule(): JSX.Element {
 
   const onSubmit = (submitted: any) => {
     const token = localStorage.getItem("token");
-    function postModules() {
-      api
+    async function postModules() {
+      await api
         .post(
           `/modules`,
           { module: submitted.module },
