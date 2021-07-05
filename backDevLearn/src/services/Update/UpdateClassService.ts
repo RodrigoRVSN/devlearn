@@ -16,9 +16,9 @@ class UpdateClassService {
 
     if (requestedClass) {
       const classNew = await classesRepositories.update(requestedClass.id, {
+        module_id: module_id || requestedClass.module_id,
         name_class: name_class || requestedClass.name_class,
         dataClass: dataClass || requestedClass.dataClass,
-        module_id: module_id || requestedClass.module_id,
       });
 
       if (classNew.affected === 1) {

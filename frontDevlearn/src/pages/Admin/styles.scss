@@ -49,10 +49,7 @@
     background-color: var(--medium-primary);
     color: var(--background);
     border: 5px solid var(--dark-secondary);
-
-    .button-container {
-      display: flex;
-    }
+   
 
     &:hover {
       border: 5px solid var(--dark-primary);

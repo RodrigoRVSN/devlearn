@@ -1,4 +1,23 @@
-#button-edit{
+#button-edit {
   width: 1rem !important;
   margin-left: 1rem;
+}
+
+.form-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  background-color: var(--light-secondary);
+  padding: 1rem;
+  button {
+    background-color: var(--background) !important;
+    border-radius: 1rem !important;
+    color: var(--light-secondary);
+    &:hover{
+      filter: brightness(0.8);
+    }
+  }
 }

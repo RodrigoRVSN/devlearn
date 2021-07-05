@@ -20,7 +20,7 @@ class UpdateModuleService {
         const moduleUpdated = await modulesRepositories.findOne(
           requestedModule.id
         );
-        return response.json(moduleUpdated);
+        return moduleUpdated;
       }
 
       return response.status(404).json({message: 'not found'});

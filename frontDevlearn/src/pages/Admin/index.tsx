@@ -12,6 +12,7 @@ import EditModule from "../../components/EditModule";
 import DeleteClass from "../../components/DeleteClass";
 import EditClass from "../../components/EditClass";
 import { useChange } from "../../hooks/useChange";
+import { Button } from "../../components/Button";
 
 export function Admin(): JSX.Element {
   const [classes, setClasses] = useState<IClasses[]>();
@@ -20,7 +21,6 @@ export function Admin(): JSX.Element {
   /* Pega as aulas do módulo clicado */
 
   function classesInModule(module_id: string[]) {
-    navigator.clipboard.writeText(module_id.toString());
     async function getClasses() {
       await api.get(`/${module_id}/classes`).then((res) => {
         res.data.sort(function (a: IClasses, b: IClasses) {
@@ -34,6 +34,9 @@ export function Admin(): JSX.Element {
     getClasses();
   }
 
+  function copyId(module_id: string[]) {
+    navigator.clipboard.writeText(module_id.toString());
+  }
   /* Renderização da página */
 
   return (
@@ -41,9 +44,8 @@ export function Admin(): JSX.Element {
       <div id="home-page">
         <h2>PÁGINA DE ADMINISTRAÇÃO</h2>
         <h4>
-          Obs: Ao clicar em um módulo, o ID dele será copiado automaticamente
-          para a sua área de transferência. Ao Adicionar uma aula, basta colar
-          esse módulo que você copiou ao clicar.
+          Obs: Basta clicar no botão "COPIAR ID" para o ID do respectivo módulo
+          ir automaticamente para a sua área de transferência.
         </h4>
         <AddModule />
         <AddClasses />
@@ -66,6 +68,7 @@ export function Admin(): JSX.Element {
                       onClick={() => classesInModule(item.id)}
                     >
                       <h2>{item.module}</h2>
+                      <Button onClick={() => copyId(item.id)}>COPIAR ID</Button>
                       <h3>
                         {item.amount === 0
                           ? "Não há aulas aqui"
