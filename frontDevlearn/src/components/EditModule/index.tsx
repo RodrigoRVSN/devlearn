@@ -51,7 +51,7 @@ const EditModule = (module_id: ModuleProps) => {
       </Button>
       {isEditing && (
         <>
-          <form className="form-edit" onSubmit={handleSubmit(onSubmit)}>
+          <form className="form-edit toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
               {...register("module")}
               label="Nome do módulo"

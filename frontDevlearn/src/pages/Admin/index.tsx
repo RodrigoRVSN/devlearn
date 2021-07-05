@@ -1,22 +1,32 @@
 import { Grid } from "@material-ui/core";
-
-import "./styles.scss";
 import { api } from "../../services/api";
+
+import { useEffect, useState } from "react";
+import { IClasses } from "../../@types/IClasses";
+import { useModules } from "../../hooks/useModules";
+
 import { AddModule } from "../../components/AddModule";
 import { AddClasses } from "../../components/AddClasses";
-import DeleteModule from "../../components/DeleteModule";
-
-import { useState } from "react";
-import { IClasses } from "../../@types/IClasses";
-import EditModule from "../../components/EditModule";
-import DeleteClass from "../../components/DeleteClass";
-import EditClass from "../../components/EditClass";
-import { useChange } from "../../hooks/useChange";
 import { Button } from "../../components/Button";
+import EditModule from "../../components/EditModule";
+import DeleteModule from "../../components/DeleteModule";
+import ClassesAdminMap from "../../components/ClassesAdminMap";
+import Loading from "../../components/Loading";
+import HomeIcon from "@material-ui/icons/Home";
+import "./styles.scss";
+import { useHistory } from "react-router-dom";
 
 export function Admin(): JSX.Element {
   const [classes, setClasses] = useState<IClasses[]>();
-  const { modules, loading } = useChange();
+  const { modules, loading } = useModules();
+  const history = useHistory();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      history.push("/");
+    }
+  }, [history, modules]);
 
   /* Pega as aulas do módulo clicado */
 
@@ -34,14 +44,20 @@ export function Admin(): JSX.Element {
     getClasses();
   }
 
+  /* Copia o ID ao clicar no botão COPIAR ID */
+
   function copyId(module_id: string[]) {
     navigator.clipboard.writeText(module_id.toString());
   }
+
   /* Renderização da página */
 
   return (
     <>
       <div id="home-page">
+        <Button onClick={() => history.push("/")}>
+          <HomeIcon />
+        </Button>
         <h2>PÁGINA DE ADMINISTRAÇÃO</h2>
         <h4>
           Obs: Basta clicar no botão "COPIAR ID" para o ID do respectivo módulo
@@ -49,7 +65,7 @@ export function Admin(): JSX.Element {
         </h4>
         <AddModule />
         <AddClasses />
-        {loading && (
+        {loading ? (
           <>
             <Grid
               spacing={4}
@@ -64,7 +80,7 @@ export function Admin(): JSX.Element {
                 return (
                   <Grid key={index} item xs={11} md={4} lg={3}>
                     <div
-                      className="module-card"
+                      className="module-card toLeft"
                       onClick={() => classesInModule(item.id)}
                     >
                       <h2>{item.module}</h2>
@@ -86,37 +102,11 @@ export function Admin(): JSX.Element {
               })}
             </Grid>
           </>
+        ) : (
+          <Loading />
         )}
         <span id="spacer">AULAS</span>
-        {classes && (
-          <>
-            <Grid
-              spacing={4}
-              container
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-              }}
-            >
-              {classes?.map((item, index) => {
-                return (
-                  <Grid key={index} item xs={10} md={6} lg={5}>
-                    <div className="class-card">
-                      <h3>{item.moduleClass.module}</h3>
-                      <h3>{item.name_class}</h3>
-                      <h3>{item.dataClass}</h3>
-                      <div className="button-container">
-                        <DeleteClass class_id={item.id} />
-                        <EditClass class_id={item.id} />
-                      </div>
-                    </div>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </>
-        )}
+        {classes && <ClassesAdminMap classes={classes} />}
       </div>
     </>
   );

@@ -41,7 +41,7 @@ export function AddModule(): JSX.Element {
 
       {clicked && (
         <>
-          <form className="form-add" onSubmit={handleSubmit(onSubmit)}>
+          <form className="form-add toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
               {...register("module")}
               label="Nome do módulo"

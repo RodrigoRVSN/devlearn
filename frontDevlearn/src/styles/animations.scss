@@ -1,0 +1,33 @@
+.toLeft {
+  animation-name: moduleCards;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+.toDown{
+  animation-name: classCards;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes moduleCards {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes classCards {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

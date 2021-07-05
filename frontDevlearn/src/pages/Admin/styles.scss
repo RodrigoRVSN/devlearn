@@ -15,10 +15,11 @@
   }
 
   h4 {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .module-card {
+
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -31,28 +32,6 @@
     border: 5px solid var(--dark-primary);
     &:hover {
       border: 5px solid var(--dark-secondary);
-      background-color: var(--background);
-      color: var(--light-secondary);
-    }
-    h2 {
-      font-size: 3rem;
-    }
-  }
-
-  .class-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    border-radius: 1rem;
-    padding: 2rem;
-    background-color: var(--medium-primary);
-    color: var(--background);
-    border: 5px solid var(--dark-secondary);
-   
-
-    &:hover {
-      border: 5px solid var(--dark-primary);
       background-color: var(--background);
       color: var(--light-secondary);
     }

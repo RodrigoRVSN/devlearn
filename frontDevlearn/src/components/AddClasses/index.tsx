@@ -47,7 +47,7 @@ export function AddClasses(): JSX.Element {
 
       {clicked && (
         <>
-          <form className="form-add" onSubmit={handleSubmit(onSubmit)}>
+          <form className="form-add toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
               {...register("name_class")}
               label="Nome da aula"

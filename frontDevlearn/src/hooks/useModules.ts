@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { IModules } from "../@types/IModules";
 import { api } from "../services/api";
 
-type changeProps = {
+type useModulesProps = {
   isChanged: boolean;
   setIsChanged: Dispatch<SetStateAction<boolean>>;
   modules: IModules[] | undefined;
@@ -12,7 +12,7 @@ type changeProps = {
   setLoading: Dispatch<SetStateAction<boolean>>;
 };
 
-export function useChange(): changeProps {
+export function useModules(): useModulesProps {
   const [isChanged, setIsChanged] = useState<boolean>(false);
   const [modules, setModules] = useState<IModules[]>();
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,12 @@ export function useChange(): changeProps {
         res.data?.map((item: any, index: any) => {
           async function moduleCheckClasses() {
             await api.get(`/${item.id}/classes`).then((response) => {
-              res.data[index] = { ...item, amount: response.data.length };
+              res.data[index] = {
+                ...item,
+                amount: response.data.length,
+                module:
+                  item.module.charAt(0).toUpperCase() + item.module.substr(1),
+              };
               if (index === res.data.length - 1) {
                 setLoading(true);
               }
@@ -34,6 +39,11 @@ export function useChange(): changeProps {
         });
 
         setModules(res.data);
+
+        if (!modules) {
+          setLoading(!loading);
+        }
+
         if (loading) {
           setModules(
             modules?.sort(function (a, b) {

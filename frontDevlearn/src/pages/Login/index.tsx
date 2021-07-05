@@ -33,7 +33,7 @@ export function Login(): JSX.Element {
   return (
     <>
       <div id="register-page">
-        <Paper elevation={10} className="box-container">
+        <Paper elevation={10} className="box-container toLeft">
           <h2>DEV LEARN</h2>
           <h1>Faça seu login!</h1>
 

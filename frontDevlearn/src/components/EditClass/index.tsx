@@ -54,7 +54,7 @@ const EditClass = (class_id: ClassProps) => {
       </Button>
       {isEditing && (
         <>
-          <form className="form-edit" onSubmit={handleSubmit(onSubmit)}>
+          <form className="form-edit toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
               {...register("module_id")}
               label="ID do módulo"

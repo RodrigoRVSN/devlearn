@@ -1,17 +1,18 @@
 import { Grid } from "@material-ui/core";
-
-import "./styles.scss";
-import Header from "../../components/Header";
-import { api } from "../../services/api";
 import { useState } from "react";
+
+import { api } from "../../services/api";
 import { IClasses } from "../../@types/IClasses";
-import { useChange } from "../../hooks/useChange";
+import { useModules } from "../../hooks/useModules";
+
+import Header from "../../components/Header";
+import ClassesMap from "../../components/ClassesMap";
+import "./styles.scss";
+import Loading from "../../components/Loading";
 
 export function Home(): JSX.Element {
-  const { modules, loading } = useChange();
+  const { modules, loading } = useModules();
   const [classes, setClasses] = useState<IClasses[]>();
-
-  /* Pega os módulos, conta as aulas de cada um e ordena os módulos */
 
   /* Pega as aulas do módulo clicado */
 
@@ -36,13 +37,14 @@ export function Home(): JSX.Element {
     <>
       <Header />
       <div id="home-page">
-        {loading && (
+        {loading ? (
           <>
             <h2>MÓDULOS</h2>
             <h4>
               Selecione os módulos! Ao abrir um módulo, as aulas estarão no fim
               da página.
             </h4>
+            {modules?.length === 0 && <h3>Não há módulos no momento</h3>}
             <Grid
               spacing={4}
               container
@@ -56,16 +58,16 @@ export function Home(): JSX.Element {
                 return (
                   <Grid key={index} item xs={11} md={4} lg={3}>
                     <div
-                      className="module-card"
+                      className="module-card toLeft"
                       onClick={() => classesInModule(item.id)}
                     >
                       <h2>{item.module}</h2>
                       <h3>
-                        {item.amount === 0
-                          ? "Não há aulas aqui"
-                          : item.amount === 1
+                        {item.amount === 1
                           ? "1 aula"
-                          : `${item.amount} aulas`}
+                          : item.amount > 1
+                          ? `${item.amount} aulas`
+                          : `Sem aulas`}
                       </h3>
                     </div>
                   </Grid>
@@ -73,33 +75,11 @@ export function Home(): JSX.Element {
               })}
             </Grid>
           </>
+        ) : (
+          <Loading />
         )}
         <span id="spacer">AULAS</span>
-        {classes && (
-          <>
-            <Grid
-              spacing={4}
-              container
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-              }}
-            >
-              {classes?.map((item, index) => {
-                return (
-                  <Grid key={index} item xs={10} md={6} lg={5}>
-                    <div className="class-card">
-                      <h3>{item.name_class}</h3>
-                      <h3>{item.dataClass}</h3>
-                      <h3>{item.moduleClass.module}</h3>y
-                    </div>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </>
-        )}
+        {classes && <ClassesMap classes={classes} />}
       </div>
     </>
   );
