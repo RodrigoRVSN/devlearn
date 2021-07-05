@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/75763403/124519794-c5632300-ddc0-11eb-86d9-963e36520045.png)
+
+
 # 💻 Projeto
 
 ##### Neste projeto, fiz uma API REST com Node e também desenvolvi o Front-end da aplicação com o uso de React. O intuíto é mostrar os módulos disponíveis e suas respectivas aulas e, com autenticação de administrador, há a possibilidade de adicionar, editar e remover aulas e módulos.
