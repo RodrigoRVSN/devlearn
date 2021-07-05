@@ -10,10 +10,11 @@ type ModuleProps = {
 };
 
 const DeleteModule = (module_id: ModuleProps) => {
+  
   function handleClick() {
     const token = localStorage.getItem("token");
-    function deleteModules() {
-      api.delete(`/${module_id.module_id}`, {
+    async function deleteModules() {
+      await api.delete(`/${module_id.module_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
     }

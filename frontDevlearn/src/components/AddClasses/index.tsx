@@ -12,7 +12,6 @@ export function AddClasses(): JSX.Element {
 
   const onSubmit = (submitted: any) => {
     const token = localStorage.getItem("token");
-    console.log(submitted);
     function postClasses() {
       api
         .post(
@@ -62,7 +61,11 @@ export function AddClasses(): JSX.Element {
               variant="outlined"
               placeholder="Clique no módulo para  copiar"
             />
-            <TextField {...register("dataClass")} type="date" variant="outlined" />
+            <TextField
+              {...register("dataClass")}
+              type="date"
+              variant="outlined"
+            />
 
             <p>{error}</p>
             <Button type="submit">ADICIONAR AULA</Button>

@@ -6,7 +6,11 @@ header {
   text-align: right;
 
   .header-content {
-    
+    button {
+      margin: 0.5rem;
+      padding: 0 2rem;
+    }
+
     a {
       margin-right: 1rem;
       border: 2px solid var(--background);

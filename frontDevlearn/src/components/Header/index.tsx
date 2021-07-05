@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "../Button";
 import "./styles.scss";
 
-const Header: React.FC = () => {
+const Header: React.FC = (): JSX.Element => {
   const [hasToken, setHasToken] = useState(false);
+  const [hasLogout, setHasLogout] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -11,7 +13,12 @@ const Header: React.FC = () => {
     } else {
       setHasToken(false);
     }
-  }, []);
+  }, [hasLogout]);
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    setHasLogout(!hasLogout);
+  }
 
   return (
     <>
@@ -24,7 +31,10 @@ const Header: React.FC = () => {
               <a href="/login">ENTRAR</a>
             </>
           ) : (
-            <a href="/admin">ADMINISTRAR</a>
+            <>
+              <Button onClick={handleLogout}>SAIR</Button>
+              <a href="/admin">ADMINISTRAR</a>
+            </>
           )}
         </div>
       </header>
