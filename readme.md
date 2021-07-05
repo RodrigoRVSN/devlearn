@@ -4,7 +4,7 @@
 
 ##### É possível realizar o cadastro de novos usuários que serão imediatamente administradores capazes de fazer as alterações específicas.
 
-Disponível em: https://ecommerce-gamer-rodrigorvsn.vercel.app/
+Disponível em: https://devlearn-rodrigorvsn.vercel.app/
 
 ---
 
@@ -49,10 +49,14 @@ Disponível em: https://ecommerce-gamer-rodrigorvsn.vercel.app/
 
 - Você pode cadastrar usuários, fazer o login do usuário e, ao ter este login autenticado, o token é salvo no localstorage. Com isso, o acesso à página de administração é liberado e assim é possível fazer o CRUD de aulas e módulos. Para verificar as alterações feitas, deve-se atualizar a página do navegador.
 
+---
+
 # ⚠️ Possíveis erros e alertas
 
 - Se você tiver notado que a tela está carregando infinitamente, provavelmente houve algum erro no banco de dados. Neste caso, deve-se interromper o servidor back-end através do terminal e iniciá-lo novamente. Após isso, basta atualizar a página no navegador.
 - Se você adicionar 2 módulos em seguida o servidor irá crashar.
 - Para ver as alterações feitas na página de administração, você deve atualizar a página do navegador.
+
+---
 
 ##### Feito com 💓 por <a href="https://www.linkedin.com/in/rodrigovictorrvsn/">Rodrigo Victor</a>
