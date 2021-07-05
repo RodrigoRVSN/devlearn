@@ -1,37 +1,36 @@
 import "./styles.scss";
 import { api } from "../../services/api";
 
-import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-
 import { Button } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
 
 type ModuleProps = {
-  module_id: string[];
+  class_id: string[];
 };
 
-const DeleteModule = (module_id: ModuleProps) => {
+const EditClass = (class_id: ModuleProps) => {
   function handleClick() {
     const token = localStorage.getItem("token");
-    function deleteModules() {
-      api.delete(`/${module_id.module_id}`, {
+    function editClass() {
+      api.delete(`/${class_id.class_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
     }
-    deleteModules();
+    editClass();
   }
 
   return (
     <>
       <Button
         variant="contained"
-        id="button-delete"
-        color="secondary"
+        id="button-edit"
+        color="primary"
         onClick={handleClick}
       >
-        <DeleteOutlinedIcon />
+        <EditIcon />
       </Button>
     </>
   );
 };
 
-export default DeleteModule;
+export default EditClass;

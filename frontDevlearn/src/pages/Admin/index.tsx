@@ -6,47 +6,16 @@ import { AddModule } from "../../components/AddModule";
 import { AddClasses } from "../../components/AddClasses";
 import DeleteModule from "../../components/DeleteModule";
 
-import { useEffect, useState } from "react";
-import { IModules } from "../../@types/IModules";
+import { useState } from "react";
 import { IClasses } from "../../@types/IClasses";
 import EditModule from "../../components/EditModule";
+import DeleteClass from "../../components/DeleteClass";
+import EditClass from "../../components/EditClass";
+import { useChange } from "../../hooks/useChange";
 
 export function Admin(): JSX.Element {
-  const [modules, setModules] = useState<IModules[]>();
   const [classes, setClasses] = useState<IClasses[]>();
-  const [loading, setLoading] = useState(false);
-
-  /* Pega os módulos, conta as aulas de cada um e ordena os módulos */
-
-  useEffect(() => {
-    async function getModules() {
-      await api.get(`/modules`).then((res) => {
-        res.data?.map((item: any, index: any) => {
-          async function moduleCheckClasses() {
-            await api.get(`/${item.id}/classes`).then((response) => {
-              res.data[index] = { ...item, amount: response.data.length };
-              if (index === res.data.length - 1) {
-                setLoading(true);
-              }
-            });
-          }
-          moduleCheckClasses();
-          return res.data[index];
-        });
-        setModules(res.data);
-        if (loading) {
-          setModules(
-            modules?.sort(function (a, b) {
-              if (a.module < b.module) return -1;
-              if (a.module > b.module) return 1;
-              return 0;
-            })
-          );
-        }
-      });
-    }
-    getModules();
-  }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
+  const { modules, loading } = useChange();
 
   /* Pega as aulas do módulo clicado */
 
@@ -54,16 +23,12 @@ export function Admin(): JSX.Element {
     navigator.clipboard.writeText(module_id.toString());
     async function getClasses() {
       await api.get(`/${module_id}/classes`).then((res) => {
+        res.data.sort(function (a: IClasses, b: IClasses) {
+          if (a.name_class < b.name_class) return -1;
+          if (a.name_class > b.name_class) return 1;
+          return 0;
+        });
         setClasses(res.data);
-        if (res.data.length > 1) {
-          setClasses(
-            classes?.sort(function (a, b) {
-              if (a.name_class < b.name_class) return -1;
-              if (a.name_class > b.name_class) return 1;
-              return 0;
-            })
-          );
-        }
       });
     }
     getClasses();
@@ -74,16 +39,16 @@ export function Admin(): JSX.Element {
   return (
     <>
       <div id="home-page">
+        <h2>PÁGINA DE ADMINISTRAÇÃO</h2>
+        <h4>
+          Obs: Ao clicar em um módulo, o ID dele será copiado automaticamente
+          para a sua área de transferência. Ao Adicionar uma aula, basta colar
+          esse módulo que você copiou ao clicar.
+        </h4>
+        <AddModule />
+        <AddClasses />
         {loading && (
           <>
-            <h2>PÁGINA DE ADMINISTRAÇÃO</h2>
-            <h4>
-              Obs: Ao clicar em um módulo, o ID dele será copiado
-              automaticamente para a sua área de transferência. Ao Adicionar uma
-              aula, basta colar esse módulo que você copiou ao clicar.
-            </h4>
-            <AddModule />
-            <AddClasses />
             <Grid
               spacing={4}
               container
@@ -135,9 +100,13 @@ export function Admin(): JSX.Element {
                 return (
                   <Grid key={index} item xs={10} md={6} lg={5}>
                     <div className="class-card">
+                      <h3>{item.moduleClass.module}</h3>
                       <h3>{item.name_class}</h3>
                       <h3>{item.dataClass}</h3>
-                      <h3>{item.moduleClass.module}</h3>y
+                      <div className="button-container">
+                        <DeleteClass class_id={item.id} />
+                        <EditClass class_id={item.id} />
+                      </div>
                     </div>
                   </Grid>
                 );

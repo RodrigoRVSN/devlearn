@@ -5,19 +5,20 @@ import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 
 import { Button } from "@material-ui/core";
 
-type ModuleProps = {
-  module_id: string[];
+type ClassProps = {
+  class_id: string[];
 };
 
-const DeleteModule = (module_id: ModuleProps) => {
+const DeleteClass = (class_id: ClassProps) => {
+  
   function handleClick() {
     const token = localStorage.getItem("token");
-    function deleteModules() {
-      api.delete(`/${module_id.module_id}`, {
+    function deleteClass() {
+      api.delete(`/modules/${class_id.class_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
     }
-    deleteModules();
+    deleteClass();
   }
 
   return (
@@ -34,4 +35,4 @@ const DeleteModule = (module_id: ModuleProps) => {
   );
 };
 
-export default DeleteModule;
+export default DeleteClass;
