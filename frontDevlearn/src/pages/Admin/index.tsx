@@ -26,7 +26,7 @@ export function Admin(): JSX.Element {
     if (!token) {
       history?.push("/");
     }
-  }, [history, modules, loading, isChanged]);
+  }, [history, loading, isChanged, modules]);
 
   /* Pega as aulas do módulo clicado */
 

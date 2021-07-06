@@ -3,12 +3,13 @@ import { Button } from "../Button";
 import { TextField } from "@material-ui/core";
 import "./styles.scss";
 import { api } from "../../services/api";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 export function AddModule(): JSX.Element {
   const [clicked, setClicked] = useState(false);
   const [error, setError] = useState("");
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, control } = useForm();
+
 
   const onSubmit = (submitted: any) => {
     const token = localStorage.getItem("token");
@@ -42,12 +43,20 @@ export function AddModule(): JSX.Element {
       {clicked && (
         <>
           <form className="form-add toDown" onSubmit={handleSubmit(onSubmit)}>
-            <TextField
-              {...register("module")}
-              label="Nome do módulo"
-              type="module"
-              variant="outlined"
-              placeholder="React"
+            <Controller
+              name="module"
+              control={control}
+              defaultValue={""}
+              render={({ field }) => (
+                <TextField
+                  required
+                  {...field}
+                  label="Nome do módulo"
+                  type="name"
+                  variant="outlined"
+                  placeholder="React"
+                />
+              )}
             />
 
             <p>{error}</p>

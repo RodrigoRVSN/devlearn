@@ -10,6 +10,7 @@ type useModulesProps = {
   setModules: Dispatch<SetStateAction<IModules[] | undefined>>;
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
+  getModules: () => void;
 };
 
 export function useModules(): useModulesProps {
@@ -34,14 +35,20 @@ export function useModules(): useModulesProps {
           });
         }
         moduleCheckClasses();
-        return res.data[index];
+        return res.data;
       });
+
+      if (isChanged) {
+        setModules(res.data);
+        setIsChanged(false);
+      }
 
       setModules(res.data);
 
       if (!modules) {
         setLoading(!loading);
       }
+
       if (loading) {
         setModules(
           modules?.sort(function (a, b) {
@@ -58,5 +65,13 @@ export function useModules(): useModulesProps {
     getModules();
   }, [isChanged, loading]);
 
-  return { isChanged, setIsChanged, modules, setModules, loading, setLoading };
+  return {
+    isChanged,
+    setIsChanged,
+    modules,
+    setModules,
+    loading,
+    setLoading,
+    getModules,
+  };
 }

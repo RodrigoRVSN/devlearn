@@ -48,6 +48,7 @@ export function AddClasses(): JSX.Element {
         <>
           <form className="form-add toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
+              required
               {...register("name_class")}
               label="Nome da aula"
               type="name"
@@ -55,6 +56,7 @@ export function AddClasses(): JSX.Element {
               placeholder="SSR e SSG"
             />
             <TextField
+              required
               {...register("module_id")}
               label="ID do módulo"
               type="name"
@@ -62,6 +64,7 @@ export function AddClasses(): JSX.Element {
               placeholder="Clique no módulo para  copiar"
             />
             <TextField
+              required
               {...register("dataClass")}
               type="date"
               variant="outlined"

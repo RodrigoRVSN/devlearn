@@ -47,14 +47,13 @@ Disponível em: https://devlearn-rodrigorvsn.vercel.app/
 
 - Com o servidor e o banco de dados ativos e com a página front-end aberta em seu navegador, já é possível utilizar o site.
 
-- Você pode cadastrar usuários, fazer o login do usuário e, ao ter este login autenticado, o token é salvo no localstorage. Com isso, o acesso à página de administração é liberado e assim é possível fazer o CRUD de aulas e módulos. Para verificar as alterações feitas, deve-se atualizar a página do navegador.
+- Você pode cadastrar usuários, fazer o login do usuário e, ao ter este login autenticado, o token é salvo no localstorage. Com isso, o acesso à página de administração é liberado e assim é possível fazer o CRUD de aulas e módulos.
 
 ---
 
 # ⚠️ Possíveis erros e alertas
 
 - Se você tiver notado que a tela está carregando infinitamente, provavelmente houve algum erro no banco de dados. Neste caso, deve-se interromper o servidor back-end através do terminal e iniciá-lo novamente. Após isso, basta atualizar a página no navegador.
-- Se você adicionar 2 módulos em seguida o servidor irá crashar.
 - Para ver as alterações feitas na página de administração, você deve atualizar a página do navegador.
 
 ---
