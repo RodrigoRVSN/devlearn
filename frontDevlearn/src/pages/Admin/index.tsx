@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 
 export function Admin(): JSX.Element {
   const [classes, setClasses] = useState<IClasses[]>();
-  const { modules, loading, isChanged } = useModules();
+  const { modules, loading } = useModules();
   const history = useHistory();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export function Admin(): JSX.Element {
     if (!token) {
       history?.push("/");
     }
-  }, [history, loading, isChanged, modules]);
+  }, [history, loading, modules]);
 
   /* Pega as aulas do módulo clicado */
 

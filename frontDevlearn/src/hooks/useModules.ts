@@ -4,8 +4,6 @@ import { IModules } from "../@types/IModules";
 import { api } from "../services/api";
 
 type useModulesProps = {
-  isChanged: boolean;
-  setIsChanged: Dispatch<SetStateAction<boolean>>;
   modules: IModules[] | undefined;
   setModules: Dispatch<SetStateAction<IModules[] | undefined>>;
   loading: boolean;
@@ -14,9 +12,10 @@ type useModulesProps = {
 };
 
 export function useModules(): useModulesProps {
-  const [isChanged, setIsChanged] = useState<boolean>(false);
   const [modules, setModules] = useState<IModules[]>();
   const [loading, setLoading] = useState(false);
+
+  /* Deve-se atualizar a página para ver as mudanças */
 
   async function getModules() {
     await api.get(`/modules`).then((res) => {
@@ -38,11 +37,6 @@ export function useModules(): useModulesProps {
         return res.data;
       });
 
-      if (isChanged) {
-        setModules(res.data);
-        setIsChanged(false);
-      }
-
       setModules(res.data);
 
       if (!modules) {
@@ -63,11 +57,9 @@ export function useModules(): useModulesProps {
 
   useEffect(() => {
     getModules();
-  }, [isChanged, loading]);
+  }, [loading]);
 
   return {
-    isChanged,
-    setIsChanged,
     modules,
     setModules,
     loading,
