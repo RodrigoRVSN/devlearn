@@ -1,6 +1,6 @@
-import { CircularProgress } from "@material-ui/core";
-import React from "react";
-import "./styles.scss";
+import { CircularProgress } from '@material-ui/core'
+import React from 'react'
+import './styles.scss'
 
 const Loading: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const Loading: React.FC = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Loading;
+export default Loading

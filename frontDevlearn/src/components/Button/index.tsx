@@ -1,14 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from 'react'
 
-import "./styles.scss";
+import './styles.scss'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
 export function Button({ ...props }: ButtonProps): JSX.Element {
   return (
     <>
-      <button className={"button"} {...props}></button>
+      <button className={'button'} {...props}></button>
     </>
-  );
+  )
 }

@@ -1,41 +1,41 @@
-import "./styles.scss";
-import { api } from "../../services/api";
+import React, { useState } from 'react'
 
-import { Button } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
-import { useState } from "react";
-import { TextField } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import "./styles.scss";
-import { useForm } from "react-hook-form";
+import { api } from '../../services/api'
+
+import { Button, TextField } from '@material-ui/core'
+import EditIcon from '@material-ui/icons/Edit'
+import CloseIcon from '@material-ui/icons/Close'
+import './styles.scss'
+import { useForm } from 'react-hook-form'
+import { IModule } from '../../@types/IModule'
 
 type ModuleProps = {
-  module_id: string[];
-};
+  moduleId: string[]
+}
 
-const EditModule = (module_id: ModuleProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [error, setError] = useState("");
-  const { handleSubmit, register } = useForm();
+const EditModule = (moduleId: ModuleProps): JSX.Element => {
+  const [isEditing, setIsEditing] = useState(false)
+  const [error, setError] = useState('')
+  const { handleSubmit, register } = useForm()
 
-  const onSubmit = (submitted: any) => {
-    const token = localStorage.getItem("token");
+  const onSubmit = (submitted: IModule) => {
+    const token = localStorage.getItem('token')
     function postModules() {
       api
         .put(
-          `/${module_id.module_id}`,
+          `/${moduleId.moduleId}`,
           { module: submitted.module },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        .then((res) => {
-          setIsEditing(!isEditing);
+        .then(() => {
+          setIsEditing(!isEditing)
         })
-        .catch((err) => {
-          setError("Você precisa fazer login!");
-        });
+        .catch(() => {
+          setError('Você precisa fazer login!')
+        })
     }
-    postModules();
-  };
+    postModules()
+  }
 
   return (
     <>
@@ -44,7 +44,7 @@ const EditModule = (module_id: ModuleProps) => {
         id="button-edit"
         color="primary"
         onClick={() => {
-          setIsEditing(!isEditing);
+          setIsEditing(!isEditing)
         }}
       >
         {isEditing ? <CloseIcon /> : <EditIcon />}
@@ -53,7 +53,7 @@ const EditModule = (module_id: ModuleProps) => {
         <>
           <form className="form-edit toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
-              {...register("module")}
+              {...register('module')}
               label="Nome do módulo"
               type="module"
               variant="outlined"
@@ -66,7 +66,7 @@ const EditModule = (module_id: ModuleProps) => {
         </>
       )}
     </>
-  );
-};
+  )
+}
 
-export default EditModule;
+export default EditModule

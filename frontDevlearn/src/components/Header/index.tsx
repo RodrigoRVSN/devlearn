@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "../Button";
-import "./styles.scss";
+import React, { useEffect, useState } from 'react'
+import { Button } from '../Button'
+import './styles.scss'
 
 const Header: React.FC = (): JSX.Element => {
-  const [hasToken, setHasToken] = useState(false);
-  const [hasLogout, setHasLogout] = useState(false);
+  const [hasToken, setHasToken] = useState(false)
+  const [hasLogout, setHasLogout] = useState(false)
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token')
     if (token) {
-      setHasToken(true);
+      setHasToken(true)
     } else {
-      setHasToken(false);
+      setHasToken(false)
     }
-  }, [hasLogout]);
+  }, [hasLogout])
 
   function handleLogout() {
-    localStorage.removeItem("token");
-    setHasLogout(!hasLogout);
+    localStorage.removeItem('token')
+    setHasLogout(!hasLogout)
   }
 
   return (
@@ -39,7 +39,7 @@ const Header: React.FC = (): JSX.Element => {
         </div>
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

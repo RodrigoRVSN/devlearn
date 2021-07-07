@@ -1,44 +1,44 @@
-import "./styles.scss";
-import { api } from "../../services/api";
+import React, { useState } from 'react'
+import './styles.scss'
+import { api } from '../../services/api'
 
-import { Button } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
-import { TextField } from "@material-ui/core";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import CloseIcon from "@material-ui/icons/Close";
+import EditIcon from '@material-ui/icons/Edit'
+import { TextField, Button } from '@material-ui/core'
+import { useForm } from 'react-hook-form'
+import CloseIcon from '@material-ui/icons/Close'
+import { IClasses } from '../../@types/IClasses'
 
 type ClassProps = {
-  class_id: string[];
-};
+  classId: string[]
+}
 
-const EditClass = (class_id: ClassProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [error, setError] = useState("");
-  const { handleSubmit, register } = useForm();
+const EditClass = (classId: ClassProps): JSX.Element => {
+  const [isEditing, setIsEditing] = useState(false)
+  const [error, setError] = useState('')
+  const { handleSubmit, register } = useForm()
 
-  const onSubmit = (submitted: any) => {
-    const token = localStorage.getItem("token");
+  const onSubmit = (submitted: IClasses) => {
+    const token = localStorage.getItem('token')
     function editClass() {
       api
         .put(
-          `/modules/${class_id.class_id}`,
+          `/modules/${classId.classId}`,
           {
-            module_id: submitted.module_id,
-            name_class: submitted.name_class,
-            dataClass: submitted.dataClass,
+            moduleId: submitted.moduleId,
+            nameClass: submitted.nameClass,
+            dataClass: submitted.dataClass
           },
           { headers: { Authorization: `Bearer ${token}` } }
         )
-        .then((res) => {
-          setIsEditing(!isEditing);
+        .then(() => {
+          setIsEditing(!isEditing)
         })
-        .catch((err) => {
-          setError("Você precisa fazer login!");
-        });
+        .catch(() => {
+          setError('Você precisa fazer login!')
+        })
     }
-    editClass();
-  };
+    editClass()
+  }
 
   return (
     <>
@@ -47,7 +47,7 @@ const EditClass = (class_id: ClassProps) => {
         id="button-edit"
         color="primary"
         onClick={() => {
-          setIsEditing(!isEditing);
+          setIsEditing(!isEditing)
         }}
       >
         {isEditing ? <CloseIcon /> : <EditIcon />}
@@ -56,21 +56,21 @@ const EditClass = (class_id: ClassProps) => {
         <>
           <form className="form-edit toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
-              {...register("module_id")}
+              {...register('moduleId')}
               label="ID do módulo"
               type="name"
               variant="outlined"
               placeholder="React"
             />
             <TextField
-              {...register("name_class")}
+              {...register('nameClass')}
               label="Nome da aula"
               type="name"
               variant="outlined"
               placeholder="React"
             />
             <TextField
-              {...register("dataClass")}
+              {...register('dataClass')}
               type="Date"
               variant="outlined"
             />
@@ -81,7 +81,7 @@ const EditClass = (class_id: ClassProps) => {
         </>
       )}
     </>
-  );
-};
+  )
+}
 
-export default EditClass;
+export default EditClass

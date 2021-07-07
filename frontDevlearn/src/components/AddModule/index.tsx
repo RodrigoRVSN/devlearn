@@ -1,43 +1,43 @@
-import { useState } from "react";
-import { Button } from "../Button";
-import { TextField } from "@material-ui/core";
-import "./styles.scss";
-import { api } from "../../services/api";
-import { useForm, Controller } from "react-hook-form";
+import React, { useState } from 'react'
+import { Button } from '../Button'
+import { TextField } from '@material-ui/core'
+import './styles.scss'
+import { api } from '../../services/api'
+import { useForm, Controller } from 'react-hook-form'
+import { IModule } from '../../@types/IModule'
 
 export function AddModule(): JSX.Element {
-  const [clicked, setClicked] = useState(false);
-  const [error, setError] = useState("");
-  const { handleSubmit, control } = useForm();
+  const [clicked, setClicked] = useState(false)
+  const [error, setError] = useState('')
+  const { handleSubmit, control } = useForm()
 
-
-  const onSubmit = (submitted: any) => {
-    const token = localStorage.getItem("token");
+  const onSubmit = (submitted: IModule) => {
+    const token = localStorage.getItem('token')
     async function postModules() {
       await api
         .post(
-          `/modules`,
+          '/modules',
           { module: submitted.module },
           { headers: { Authorization: `Bearer ${token}` } }
         )
         .then(() => {
-          setClicked(!clicked);
+          setClicked(!clicked)
         })
-        .catch((err) => {
-          setError("Você precisa fazer login!");
-        });
+        .catch(() => {
+          setError('Você precisa fazer login!')
+        })
     }
-    postModules();
-  };
+    postModules()
+  }
 
   return (
     <>
       <Button
         onClick={() => {
-          setClicked(!clicked);
+          setClicked(!clicked)
         }}
       >
-        {clicked ? "Fechar" : "Adicionar módulo"}
+        {clicked ? 'Fechar' : 'Adicionar módulo'}
       </Button>
 
       {clicked && (
@@ -46,7 +46,7 @@ export function AddModule(): JSX.Element {
             <Controller
               name="module"
               control={control}
-              defaultValue={""}
+              defaultValue={''}
               render={({ field }) => (
                 <TextField
                   required
@@ -65,5 +65,5 @@ export function AddModule(): JSX.Element {
         </>
       )}
     </>
-  );
+  )
 }

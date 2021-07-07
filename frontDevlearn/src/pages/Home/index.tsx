@@ -1,34 +1,35 @@
-import { Grid } from "@material-ui/core";
-import { useState } from "react";
+/* eslint-disable indent */
+import { Grid } from '@material-ui/core'
+import React, { useState } from 'react'
 
-import { api } from "../../services/api";
-import { IClasses } from "../../@types/IClasses";
-import { useModules } from "../../hooks/useModules";
+import { api } from '../../services/api'
+import { IClasses } from '../../@types/IClasses'
+import { useModules } from '../../hooks/useModules'
 
-import Header from "../../components/Header";
-import ClassesMap from "../../components/ClassesMap";
-import "./styles.scss";
-import Loading from "../../components/Loading";
+import Header from '../../components/Header'
+import ClassesMap from '../../components/ClassesMap'
+import './styles.scss'
+import Loading from '../../components/Loading'
 
 export function Home(): JSX.Element {
-  const { modules, loading } = useModules();
-  const [classes, setClasses] = useState<IClasses[]>();
+  const { modules, loading } = useModules()
+  const [classes, setClasses] = useState<IClasses[]>()
 
   /* Pega as aulas do módulo clicado */
 
-  function classesInModule(module_id: string[]) {
-    navigator.clipboard.writeText(module_id.toString());
+  function classesInModule(moduleId: string[]) {
+    navigator.clipboard.writeText(moduleId.toString())
     async function getClasses() {
-      await api.get(`/${module_id}/classes`).then((res) => {
+      await api.get(`/${moduleId}/classes`).then(res => {
         res.data.sort(function (a: IClasses, b: IClasses) {
-          if (a.name_class < b.name_class) return -1;
-          if (a.name_class > b.name_class) return 1;
-          return 0;
-        });
-        setClasses(res.data);
-      });
+          if (a.nameClass < b.nameClass) return -1
+          if (a.nameClass > b.nameClass) return 1
+          return 0
+        })
+        setClasses(res.data)
+      })
     }
-    getClasses();
+    getClasses()
   }
 
   /* Renderização da página */
@@ -49,9 +50,9 @@ export function Home(): JSX.Element {
               spacing={4}
               container
               style={{
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center'
               }}
             >
               {modules?.map((item, index) => {
@@ -64,14 +65,14 @@ export function Home(): JSX.Element {
                       <h2>{item.module}</h2>
                       <h3>
                         {item.amount === 1
-                          ? "1 aula"
+                          ? '1 aula'
                           : item.amount > 1
                           ? `${item.amount} aulas`
-                          : `Sem aulas`}
+                          : 'Sem aulas'}
                       </h3>
                     </div>
                   </Grid>
-                );
+                )
               })}
             </Grid>
           </>
@@ -82,5 +83,5 @@ export function Home(): JSX.Element {
         {classes && <ClassesMap classes={classes} />}
       </div>
     </>
-  );
+  )
 }
