@@ -5,8 +5,9 @@ import './styles.scss'
 import { api } from '../../services/api'
 import { useForm, Controller } from 'react-hook-form'
 import { IModule } from '../../@types/IModule'
+import { IFunctionCallback } from '../../@types/IFunctionCallback'
 
-export function AddModule(): JSX.Element {
+export function AddModule(props: IFunctionCallback): JSX.Element {
   const [clicked, setClicked] = useState(false)
   const [error, setError] = useState('')
   const { handleSubmit, control } = useForm()
@@ -28,6 +29,7 @@ export function AddModule(): JSX.Element {
         })
     }
     postModules()
+    props.functionCallback()
   }
 
   return (

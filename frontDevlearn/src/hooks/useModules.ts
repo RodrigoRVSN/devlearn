@@ -8,11 +8,14 @@ type useModulesProps = {
   loading: boolean
   setLoading: Dispatch<SetStateAction<boolean>>
   getModules: () => void
+  isChanged: boolean
+  setIsChanged: Dispatch<SetStateAction<boolean>>
 }
 
 export function useModules(): useModulesProps {
   const [modules, setModules] = useState<IModules[]>()
   const [loading, setLoading] = useState(false)
+  const [isChanged, setIsChanged] = useState(false)
 
   /* Deve-se atualizar a página para ver as mudanças */
 
@@ -56,9 +59,11 @@ export function useModules(): useModulesProps {
 
   useEffect(() => {
     getModules()
-  }, [loading])
+  }, [loading, isChanged])
 
   return {
+    isChanged,
+    setIsChanged,
     modules,
     setModules,
     loading,

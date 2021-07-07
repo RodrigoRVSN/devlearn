@@ -19,7 +19,7 @@ import { useHistory } from 'react-router-dom'
 
 export function Admin(): JSX.Element {
   const [classes, setClasses] = useState<IClasses[]>()
-  const { modules, loading } = useModules()
+  const { modules, loading, isChanged, setIsChanged } = useModules()
   const history = useHistory()
 
   useEffect(() => {
@@ -51,6 +51,10 @@ export function Admin(): JSX.Element {
     navigator.clipboard.writeText(moduleId.toString())
   }
 
+  function reRenderCallbackFunction(): void {
+    setIsChanged(!isChanged)
+  }
+
   /* Renderização da página */
 
   return (
@@ -64,7 +68,7 @@ export function Admin(): JSX.Element {
           Obs: Basta clicar no botão COPIAR ID para o ID do respectivo módulo ir
           automaticamente para a sua área de transferência.
         </h4>
-        <AddModule />
+        <AddModule functionCallback={reRenderCallbackFunction} />
         <AddClasses />
         {loading ? (
           <>
