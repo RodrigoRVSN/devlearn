@@ -21,11 +21,11 @@ export class CreateClassTable1625246819228 implements MigrationInterface {
             default: "uuid_generate_v4()",
           },
           {
-            name: "name_class",
+            name: "nameClass",
             type: "varchar",
           },
           {
-            name: "module_id",
+            name: "moduleId",
             type: "uuid",
           },
 
@@ -39,7 +39,7 @@ export class CreateClassTable1625246819228 implements MigrationInterface {
             name: "FKModuleClass",
             referencedTableName: "modules",
             referencedColumnNames: ["id"],
-            columnNames: ["module_id"],
+            columnNames: ["moduleId"],
             onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },

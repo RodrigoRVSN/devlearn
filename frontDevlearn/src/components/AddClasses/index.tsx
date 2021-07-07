@@ -5,8 +5,9 @@ import './styles.scss'
 import { api } from '../../services/api'
 import { useForm } from 'react-hook-form'
 import { IClasses } from '../../@types/IClasses'
+import { IFunctionCallback } from '../../@types/IFunctionCallback'
 
-export function AddClasses(): JSX.Element {
+export function AddClasses(props: IFunctionCallback): JSX.Element {
   const [clicked, setClicked] = useState(false)
   const [error, setError] = useState('')
   const { handleSubmit, register } = useForm()
@@ -18,8 +19,8 @@ export function AddClasses(): JSX.Element {
         .post(
           '/classes',
           {
-            name_class: submitted.nameClass,
-            module_id: submitted.moduleId,
+            nameClass: submitted.nameClass,
+            moduleId: submitted.moduleId,
             dataClass: submitted.dataClass
           },
           { headers: { Authorization: `Bearer ${token}` } }
@@ -33,6 +34,7 @@ export function AddClasses(): JSX.Element {
         })
     }
     postClasses()
+    props.functionCallback()
   }
 
   return (
@@ -50,7 +52,7 @@ export function AddClasses(): JSX.Element {
           <form className="form-add toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
               required
-              {...register('name_class')}
+              {...register('nameClass')}
               label="Nome da aula"
               type="name"
               variant="outlined"
@@ -58,7 +60,7 @@ export function AddClasses(): JSX.Element {
             />
             <TextField
               required
-              {...register('module_id')}
+              {...register('moduleId')}
               label="ID do módulo"
               type="name"
               variant="outlined"

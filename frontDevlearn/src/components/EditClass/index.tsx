@@ -10,6 +10,7 @@ import { IClasses } from '../../@types/IClasses'
 
 type ClassProps = {
   classId: string[]
+  functionCallback: () => void
 }
 
 const EditClass = (classId: ClassProps): JSX.Element => {
@@ -38,6 +39,7 @@ const EditClass = (classId: ClassProps): JSX.Element => {
         })
     }
     editClass()
+    classId.functionCallback()
   }
 
   return (

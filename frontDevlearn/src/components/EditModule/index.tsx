@@ -11,6 +11,7 @@ import { IModule } from '../../@types/IModule'
 
 type ModuleProps = {
   moduleId: string[]
+  functionCallback: () => void
 }
 
 const EditModule = (moduleId: ModuleProps): JSX.Element => {
@@ -35,6 +36,7 @@ const EditModule = (moduleId: ModuleProps): JSX.Element => {
         })
     }
     postModules()
+    moduleId.functionCallback()
   }
 
   return (

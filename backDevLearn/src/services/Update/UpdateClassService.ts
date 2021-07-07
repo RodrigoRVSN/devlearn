@@ -4,9 +4,9 @@ import { ClassRepositories } from "../../repositories/ClassesRepositorioes";
 
 class UpdateClassService {
   async execute(
-    module_id: string,
+    moduleId: string,
     dataClass: Date,
-    name_class: string,
+    nameClass: string,
     request: Request,
     response: Response
   ) {
@@ -16,8 +16,8 @@ class UpdateClassService {
 
     if (requestedClass) {
       const classNew = await classesRepositories.update(requestedClass.id, {
-        module_id: module_id || requestedClass.module_id,
-        name_class: name_class || requestedClass.name_class,
+        moduleId: moduleId || requestedClass.moduleId,
+        nameClass: nameClass || requestedClass.nameClass,
         dataClass: dataClass || requestedClass.dataClass,
       });
 

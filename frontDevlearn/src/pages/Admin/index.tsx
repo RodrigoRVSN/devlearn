@@ -27,7 +27,7 @@ export function Admin(): JSX.Element {
     if (!token) {
       history?.push('/')
     }
-  }, [history, loading, modules])
+  }, [history, loading, isChanged, modules])
 
   /* Pega as aulas do módulo clicado */
 
@@ -51,7 +51,9 @@ export function Admin(): JSX.Element {
     navigator.clipboard.writeText(moduleId.toString())
   }
 
-  function reRenderCallbackFunction(): void {
+  /* Faz um callback para chamar o bd, houve um erro que não consegui resolver pois o state de modules está com um atraso. */
+
+  function reRenderCallbackFunction() {
     setIsChanged(!isChanged)
   }
 
@@ -66,10 +68,11 @@ export function Admin(): JSX.Element {
         <h2>PÁGINA DE ADMINISTRAÇÃO</h2>
         <h4>
           Obs: Basta clicar no botão COPIAR ID para o ID do respectivo módulo ir
-          automaticamente para a sua área de transferência.
+          automaticamente para a sua área de transferência. Atualize a página
+          para ver o estado do banco de dados em tempo real
         </h4>
         <AddModule functionCallback={reRenderCallbackFunction} />
-        <AddClasses />
+        <AddClasses functionCallback={reRenderCallbackFunction} />
         {loading ? (
           <>
             <Grid
@@ -91,15 +94,21 @@ export function Admin(): JSX.Element {
                       <h2>{item.module}</h2>
                       <Button onClick={() => copyId(item.id)}>COPIAR ID</Button>
                       <h3>
-                        {item.amount === 0
-                          ? 'Não há aulas aqui'
-                          : item.amount === 1
+                        {item.amount === 1
                           ? '1 aula'
-                          : `${item.amount} aulas`}
+                          : item.amount > 1
+                          ? `${item.amount} aulas`
+                          : 'Sem aulas'}
                       </h3>
                       <div className="button-container">
-                        <DeleteModule moduleId={item.id} />
-                        <EditModule moduleId={item.id} />
+                        <DeleteModule
+                          moduleId={item.id}
+                          functionCallback={reRenderCallbackFunction}
+                        />
+                        <EditModule
+                          moduleId={item.id}
+                          functionCallback={reRenderCallbackFunction}
+                        />
                       </div>
                     </div>
                   </Grid>

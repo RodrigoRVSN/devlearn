@@ -23,7 +23,7 @@ exports[`<Admin /> should render the admin page 1`] = `
       PÁGINA DE ADMINISTRAÇÃO
     </h2>
     <h4>
-      Obs: Basta clicar no botão "COPIAR ID" para o ID do respectivo módulo ir automaticamente para a sua área de transferência.
+      Obs: Basta clicar no botão COPIAR ID para o ID do respectivo módulo ir automaticamente para a sua área de transferência. Atualize a página para ver o estado do banco de dados em tempo real
     </h4>
     <button
       class="button"

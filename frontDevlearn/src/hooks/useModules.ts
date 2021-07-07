@@ -7,7 +7,6 @@ type useModulesProps = {
   setModules: Dispatch<SetStateAction<IModules[] | undefined>>
   loading: boolean
   setLoading: Dispatch<SetStateAction<boolean>>
-  getModules: () => void
   isChanged: boolean
   setIsChanged: Dispatch<SetStateAction<boolean>>
 }
@@ -39,6 +38,11 @@ export function useModules(): useModulesProps {
         return res.data
       })
 
+      if (isChanged) {
+        setModules(res.data)
+        setIsChanged(false)
+      }
+
       setModules(res.data)
 
       if (!modules) {
@@ -67,7 +71,6 @@ export function useModules(): useModulesProps {
     modules,
     setModules,
     loading,
-    setLoading,
-    getModules
+    setLoading
   }
 }

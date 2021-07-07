@@ -14,12 +14,12 @@ class Class {
   id: string;
 
   @Column()
-  name_class: string;
+  nameClass: string;
 
   @Column()
-  module_id: string;
+  moduleId: string;
 
-  @JoinColumn({ name: "module_id" })
+  @JoinColumn({ name: "moduleId" })
   @ManyToOne(() => Module)
   moduleClass: Module;
 

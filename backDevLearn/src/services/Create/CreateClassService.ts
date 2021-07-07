@@ -4,24 +4,24 @@ import { ModulesRepositories } from "../../repositories/ModulesRepositories";
 
 interface IClassCreate {
   dataClass: Date;
-  name_class: string;
-  module_id: string;
+  nameClass: string;
+  moduleId: string;
 }
 
 class CreateClassService {
-  async execute({ dataClass, module_id, name_class }: IClassCreate) {
+  async execute({ dataClass, moduleId, nameClass }: IClassCreate) {
     const classRepositories = getCustomRepository(ClassRepositories);
     const modulesRepositores = getCustomRepository(ModulesRepositories);
 
     /* Faltando modulo ou data */
 
-    if (!module_id || !dataClass) {
+    if (!moduleId || !dataClass) {
       throw new Error("Data/Module_id missing!");
     }
 
     /* Modulo existe mesmo? */
 
-    const moduleExists = await modulesRepositores.findOne(module_id);
+    const moduleExists = await modulesRepositores.findOne(moduleId);
 
     if (!moduleExists) {
       throw new Error("Module don't exists!");
@@ -29,7 +29,7 @@ class CreateClassService {
 
     /* Aula existe?  */
 
-    const classAlreadyExists = await classRepositories.findOne({ name_class });
+    const classAlreadyExists = await classRepositories.findOne({ nameClass });
 
     if (classAlreadyExists) {
       throw new Error("Class exists");
@@ -39,8 +39,8 @@ class CreateClassService {
 
     const classNew = classRepositories.create({
       dataClass,
-      module_id,
-      name_class,
+      moduleId,
+      nameClass,
     });
 
     await classRepositories.save(classNew);

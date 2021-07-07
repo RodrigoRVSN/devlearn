@@ -4,12 +4,18 @@ import './styles.scss'
 import { IClasses } from '../../@types/IClasses'
 import DeleteClass from '../../components/DeleteClass'
 import EditClass from '../../components/EditClass'
+import { useModules } from '../../hooks/useModules'
 
 type ClassesProps = {
   classes: IClasses[]
 }
 
 const ClassesAdminMap = ({ classes }: ClassesProps): JSX.Element => {
+  const { setIsChanged, isChanged } = useModules()
+
+  function reRenderCallbackFunction() {
+    setIsChanged(!isChanged)
+  }
   return (
     <>
       <Grid
@@ -29,8 +35,14 @@ const ClassesAdminMap = ({ classes }: ClassesProps): JSX.Element => {
                 <h3>{item.nameClass}</h3>
                 <h3>{item.dataClass}</h3>
                 <div className="button-container">
-                  <DeleteClass classId={item.id} />
-                  <EditClass classId={item.id} />
+                  <DeleteClass
+                    classId={item.id}
+                    functionCallback={reRenderCallbackFunction}
+                  />
+                  <EditClass
+                    classId={item.id}
+                    functionCallback={reRenderCallbackFunction}
+                  />
                 </div>
               </div>
             </Grid>

@@ -8,6 +8,7 @@ import { Button } from '@material-ui/core'
 
 type ModuleProps = {
   moduleId: string[]
+  functionCallback: () => void
 }
 
 const DeleteModule = (moduleId: ModuleProps): JSX.Element => {
@@ -19,6 +20,7 @@ const DeleteModule = (moduleId: ModuleProps): JSX.Element => {
       })
     }
     deleteModules()
+    moduleId.functionCallback()
   }
 
   return (

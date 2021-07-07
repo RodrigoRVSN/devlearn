@@ -7,7 +7,7 @@ class ListClassInModuleService {
 
     const modules = await classRepositories.find({
       where: {
-        module_id: id,
+        moduleId: id,
       },
       relations: ["moduleClass"],
     });

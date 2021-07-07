@@ -8,6 +8,7 @@ import { Button } from '@material-ui/core'
 
 type ClassProps = {
   classId: string[]
+  functionCallback: () => void
 }
 
 const DeleteClass = (classId: ClassProps): JSX.Element => {
@@ -19,6 +20,7 @@ const DeleteClass = (classId: ClassProps): JSX.Element => {
       })
     }
     deleteClass()
+    classId.functionCallback()
   }
 
   return (
