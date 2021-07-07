@@ -1,25 +1,27 @@
-import { api } from "../../services/api";
-import { Paper, TextField } from "@material-ui/core";
-import { Button } from "../../components/Button";
-import { useForm } from "react-hook-form";
+import React from 'react'
+import { api } from '../../services/api'
+import { Paper, TextField } from '@material-ui/core'
+import { Button } from '../../components/Button'
+import { useForm } from 'react-hook-form'
 
-import "./styles.scss";
-import { useHistory } from "react-router-dom";
+import './styles.scss'
+import { useHistory } from 'react-router-dom'
+import { IUser } from '../../@types/IUser'
 
 export function Register(): JSX.Element {
-  const { handleSubmit, register } = useForm();
-  const history = useHistory();
+  const { handleSubmit, register } = useForm()
+  const history = useHistory()
 
-  const onSubmit = (submitted: any) => {
+  const onSubmit = (submitted: IUser) => {
     function getItems() {
-      api.post(`/users`, {
+      api.post('/users', {
         email: submitted.email,
-        password: submitted.password,
-      });
+        password: submitted.password
+      })
     }
-    getItems();
-    history.push("/login");
-  };
+    getItems()
+    history.push('/login')
+  }
 
   return (
     <>
@@ -31,7 +33,7 @@ export function Register(): JSX.Element {
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               required
-              {...register("email")}
+              {...register('email')}
               label="Email"
               type="email"
               variant="outlined"
@@ -39,7 +41,7 @@ export function Register(): JSX.Element {
             />
             <TextField
               required
-              {...register("password")}
+              {...register('password')}
               label="Senha"
               type="password"
               variant="outlined"
@@ -54,5 +56,5 @@ export function Register(): JSX.Element {
         </Paper>
       </div>
     </>
-  );
+  )
 }

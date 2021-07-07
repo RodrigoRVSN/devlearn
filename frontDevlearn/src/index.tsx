@@ -1,13 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import "./styles/global.scss";
-import "./styles/animations.scss";
+import App from './App'
+
+import './styles/global.scss'
+import './styles/animations.scss'
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)

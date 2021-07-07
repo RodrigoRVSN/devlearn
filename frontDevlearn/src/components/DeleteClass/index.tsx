@@ -1,24 +1,26 @@
-import "./styles.scss";
-import { api } from "../../services/api";
+import React from 'react'
+import './styles.scss'
+import { api } from '../../services/api'
 
-import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
 
-import { Button } from "@material-ui/core";
+import { Button } from '@material-ui/core'
 
 type ClassProps = {
-  class_id: string[];
-};
+  classId: string[]
+  functionCallback: () => void
+}
 
-const DeleteClass = (class_id: ClassProps) => {
-  
+const DeleteClass = (classId: ClassProps): JSX.Element => {
   function handleClick() {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token')
     function deleteClass() {
-      api.delete(`/modules/${class_id.class_id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      api.delete(`/modules/${classId.classId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
     }
-    deleteClass();
+    deleteClass()
+    classId.functionCallback()
   }
 
   return (
@@ -32,7 +34,7 @@ const DeleteClass = (class_id: ClassProps) => {
         <DeleteOutlinedIcon />
       </Button>
     </>
-  );
-};
+  )
+}
 
-export default DeleteClass;
+export default DeleteClass

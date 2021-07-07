@@ -1,34 +1,35 @@
-import { api } from "../../services/api";
-import { Paper, TextField } from "@material-ui/core";
-import { Button } from "../../components/Button";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react'
+import { api } from '../../services/api'
+import { Paper, TextField } from '@material-ui/core'
+import { Button } from '../../components/Button'
+import { useForm } from 'react-hook-form'
 
-import "./styles.scss";
-import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import './styles.scss'
+import { useHistory } from 'react-router-dom'
+import { IUser } from '../../@types/IUser'
 
 export function Login(): JSX.Element {
-  const { handleSubmit, register } = useForm();
-  const history = useHistory();
-  const [error, setError] = useState("");
+  const { handleSubmit, register } = useForm()
+  const history = useHistory()
+  const [error, setError] = useState('')
 
-  const onSubmit = (submitted: any) => {
+  const onSubmit = (submitted: IUser) => {
     function getItems() {
       api
-        .post(`/login`, {
+        .post('/login', {
           email: submitted.email,
-          password: submitted.password,
+          password: submitted.password
         })
-        .then((res) => {
-          localStorage.setItem("token", res.data);
-          history.push("/admin");
+        .then(res => {
+          localStorage.setItem('token', res.data)
+          history.push('/admin')
         })
-        .catch((err) => {
-          setError("Login está incorreto!");
-        });
+        .catch(() => {
+          setError('Login está incorreto!')
+        })
     }
-    getItems();
-  };
+    getItems()
+  }
 
   return (
     <>
@@ -40,7 +41,7 @@ export function Login(): JSX.Element {
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               required
-              {...register("email")}
+              {...register('email')}
               label="Email"
               type="email"
               variant="outlined"
@@ -48,7 +49,7 @@ export function Login(): JSX.Element {
             />
             <TextField
               required
-              {...register("password")}
+              {...register('password')}
               label="Senha"
               type="password"
               variant="outlined"
@@ -64,5 +65,5 @@ export function Login(): JSX.Element {
         </Paper>
       </div>
     </>
-  );
+  )
 }

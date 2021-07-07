@@ -1,47 +1,50 @@
-import { useState } from "react";
-import { Button } from "../Button";
-import { TextField } from "@material-ui/core";
-import "./styles.scss";
-import { api } from "../../services/api";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react'
+import { Button } from '../Button'
+import { TextField } from '@material-ui/core'
+import './styles.scss'
+import { api } from '../../services/api'
+import { useForm } from 'react-hook-form'
+import { IClasses } from '../../@types/IClasses'
+import { IFunctionCallback } from '../../@types/IFunctionCallback'
 
-export function AddClasses(): JSX.Element {
-  const [clicked, setClicked] = useState(false);
-  const [error, setError] = useState("");
-  const { handleSubmit, register } = useForm();
+export function AddClasses(props: IFunctionCallback): JSX.Element {
+  const [clicked, setClicked] = useState(false)
+  const [error, setError] = useState('')
+  const { handleSubmit, register } = useForm()
 
-  const onSubmit = (submitted: any) => {
-    const token = localStorage.getItem("token");
+  const onSubmit = (submitted: IClasses) => {
+    const token = localStorage.getItem('token')
     async function postClasses() {
       await api
         .post(
-          `/classes`,
+          '/classes',
           {
-            name_class: submitted.name_class,
-            module_id: submitted.module_id,
-            dataClass: submitted.dataClass,
+            nameClass: submitted.nameClass,
+            moduleId: submitted.moduleId,
+            dataClass: submitted.dataClass
           },
           { headers: { Authorization: `Bearer ${token}` } }
         )
         .then(() => {
-          setClicked(!clicked);
+          setClicked(!clicked)
         })
-        .catch((err) => {
-          console.log(err);
-          setError("Você precisa fazer login!");
-        });
+        .catch(err => {
+          console.log(err)
+          setError('Você precisa fazer login!')
+        })
     }
-    postClasses();
-  };
+    postClasses()
+    props.functionCallback()
+  }
 
   return (
     <>
       <Button
         onClick={() => {
-          setClicked(!clicked);
+          setClicked(!clicked)
         }}
       >
-        {clicked ? "Fechar" : "Adicionar aula"}
+        {clicked ? 'Fechar' : 'Adicionar aula'}
       </Button>
 
       {clicked && (
@@ -49,7 +52,7 @@ export function AddClasses(): JSX.Element {
           <form className="form-add toDown" onSubmit={handleSubmit(onSubmit)}>
             <TextField
               required
-              {...register("name_class")}
+              {...register('nameClass')}
               label="Nome da aula"
               type="name"
               variant="outlined"
@@ -57,7 +60,7 @@ export function AddClasses(): JSX.Element {
             />
             <TextField
               required
-              {...register("module_id")}
+              {...register('moduleId')}
               label="ID do módulo"
               type="name"
               variant="outlined"
@@ -65,7 +68,7 @@ export function AddClasses(): JSX.Element {
             />
             <TextField
               required
-              {...register("dataClass")}
+              {...register('dataClass')}
               type="date"
               variant="outlined"
             />
@@ -76,5 +79,5 @@ export function AddClasses(): JSX.Element {
         </>
       )}
     </>
-  );
+  )
 }

@@ -3,11 +3,11 @@ import { ListClassInModuleService } from "../../../services/Read/ListClassInModu
 
 class ListClassInModuleController {
   async list(request: Request, response: Response) {
-    const module_id = request.params.id;
+    const moduleId = request.params.id;
 
     const listClassInModuleService = new ListClassInModuleService();
 
-    const classInModule = await listClassInModuleService.execute(module_id);
+    const classInModule = await listClassInModuleService.execute(moduleId);
 
     return response.json(classInModule);
   }

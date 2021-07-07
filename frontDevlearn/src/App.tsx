@@ -1,10 +1,10 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
-import { Home } from "./pages/Home";
-import { Admin } from "./pages/Admin";
+import React, { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Login } from './pages/Login'
+import { Register } from './pages/Register'
+import { Home } from './pages/Home'
+import { Admin } from './pages/Admin'
 
-function App() {
+function App(): JSX.Element {
   return (
     <>
       <BrowserRouter>
@@ -16,7 +16,7 @@ function App() {
         </Switch>
       </BrowserRouter>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

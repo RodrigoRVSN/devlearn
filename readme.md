@@ -42,7 +42,7 @@ Disponível em: https://devlearn-rodrigorvsn.vercel.app/
 
 # 🚀 Como executar
 
-- Entre na pasta respectiva ao backend e utilize o comando `yarn dev` para inicializar o servidor backend local (localhost:4000 - Necessário instalar o <a href="https://www.postgresql.org/">driver do Postgres</a>).
+- Entre na pasta respectiva ao backend e utilize o comando `yarn dev` para inicializar o servidor backend local (localhost:4000 - Necessário instalar o <a href="https://www.postgresql.org/">driver do Postgres</a>). Para sincronizar o banco de dados, utilize o comando `yarn typeorm scheme:sync` com o pgadmin4 aberto.
 
 - As informações do banco de dados estão disponíveis no arquivo ormconfig.json, dentro da pasta do back-end.
 

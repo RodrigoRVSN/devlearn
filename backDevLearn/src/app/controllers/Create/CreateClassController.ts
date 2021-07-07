@@ -3,14 +3,14 @@ import { CreateClassService } from "../../../services/Create/CreateClassService"
 
 class CreateClassController {
   async store(request: Request, response: Response) {
-    const { module_id, dataClass, name_class } = request.body;
+    const { moduleId, dataClass, nameClass } = request.body;
 
     const createClassService = new CreateClassService();
 
     const classNew = await createClassService.execute({
       dataClass,
-      module_id,
-      name_class,
+      moduleId,
+      nameClass,
     });
 
     return response.json(classNew);

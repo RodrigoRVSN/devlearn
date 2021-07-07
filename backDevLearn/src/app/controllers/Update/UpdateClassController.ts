@@ -3,13 +3,13 @@ import { UpdateClassService } from "../../../services/Update/UpdateClassService"
 
 class UpdateClassController {
   async store(request: Request, response: Response) {
-    const { module_id, dataClass, name_class } = request.body;
+    const { moduleId, dataClass, nameClass } = request.body;
     const updateClassController = new UpdateClassService();
 
     const classUpdated = await updateClassController.execute(
-      module_id,
+      moduleId,
       dataClass,
-      name_class,
+      nameClass,
       request,
       response
     );
